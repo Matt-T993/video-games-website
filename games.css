@@ -1,4 +1,14 @@
-/* games */
+.container {
+  padding: 80px 24px;
+}
+
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* games__header */
 .content__wrapper {
   position: relative;
   display: flex;
@@ -13,27 +23,41 @@
   margin: 40px;
 }
 .overlay {
-  position: absolute;
+  background-image: url(https://cdn.vectorstock.com/i/preview-1x/44/85/gamer-tournament-night-cartoon-vector-47484485.jpg);
+  background-repeat: no-repeat;
+  background-position: 50% center;
+  background-size: cover;
+
   width: 100%;
-  z-index: 1;
-  top: 0;
+  height: 350px;
+  object-fit: contain;
+  position: absolute;
   inset: 0px;
-}
-
-.banner__img {
-  height: 400px;
-  object-fit: fill;
   z-index: 1;
 }
 
-#games .fa-search {
+#games__header.fa-search {
   z-index: 100;
   position: absolute;
-
   bottom: 15px;
   right: 0px;
   z-index: 10000;
   padding: 0px 20px 0px 8px;
   color: rgb(96, 48, 177);
   font-size: 32px;
+}
+
+/* games */
+.games__list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.game {
+  width: calc((100% / 3));
+  background-color: #202020;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  padding-bottom: 20px;
 }
