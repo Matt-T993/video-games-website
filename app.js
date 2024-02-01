@@ -1,16 +1,34 @@
 const gameListEl = document.querySelector(".games-list");
 
-const getGames = async () => {
+const getGames = async (filter = "", platforms = "", searchQuery = "") => {
   try {
-    const response = await fetch(
-      "https://api.rawg.io/api/games?key=c5a7f5669591401a9bc5b256edd49d68"
-    );
+    let url =
+      "https://api.rawg.io/api/games?key=c5a7f5669591401a9bc5b256edd49d68";
+
+    // Add ordering filter to the URL
+    if (filter) {
+      url += `&ordering=${filter}`;
+    }
+
+    // Add parent platforms filter to the URL
+    if (platforms) {
+      url += `&parent_platforms=${platforms}`;
+    }
+
+    if (searchQuery) {
+      url += `&search=${encodeURIComponent(searchQuery)}`;
+    }
+
+    const response = await fetch(url);
     const gamesData = await response.json();
 
-    gamesData.results.map((game) => {
+    // Clear existing games before appending new ones
+    gameListEl.innerHTML = "";
+
+    // Process and display each game
+    gamesData.results.forEach((game) => {
       const gameEl = document.createElement("div");
       gameEl.className = "game";
-
       gameEl.innerHTML = `
         <figure class="game__img--wrapper">
           <img class="game__img" src="${game.background_image}" alt="${
@@ -38,7 +56,6 @@ const getGames = async () => {
             .join(", ")}</p>
         </div>
       `;
-
       gameListEl.appendChild(gameEl);
     });
   } catch (error) {
@@ -46,7 +63,26 @@ const getGames = async () => {
   }
 };
 
-getGames();
+function filterGames(event) {
+  const filterValue = event.target.value;
+  getGames(filterValue);
+}
+
+function filterPlatforms(event) {
+  const platformValue = event.target.value;
+  getGames("", platformValue);
+}
+
+function handleKeyPress(event) {
+  if (event.key === "Enter") {
+    searchGames();
+  }
+}
+
+function searchGames() {
+  const query = document.getElementById("gameSearch").value;
+  getGames("", "", query);
+}
 
 function getPlatformImage(platformName) {
   if (platformName.includes("nintendo")) {
@@ -64,3 +100,4 @@ function getPlatformImage(platformName) {
   }
   return;
 }
+getGames();

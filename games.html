@@ -35,8 +35,9 @@
       <div class="content__wrapper">
         <h1 class="content__description--title ">Browse Games</h1>
         <div class="header__searchbar">
-        <input type="text" class="header__input" placeholder="Search by Title, Genre, Company">
-        <i class="fas fa-search"></i>
+          <input id="gameSearch" type="text" class="header__input" placeholder="Search Games" onkeypress="handleKeyPress(event)">
+
+        <i class="fas fa-search"  onclick="searchGames()"></i>
         </div>
       </div>
       </div>
@@ -46,16 +47,28 @@
     <section id="games">
       <div class="container">
         <div class="row">
-          <div class="books__header">
-          <h2 class="section__title books__header--title">
-            All <span class="purple">Books</span>
+          <div class="games__header">
+          <h2 class="section__title games__header--title">
+            All <span class="purple">Games</span>
           </h2>
-          <select id="categories" onchange="gameCategories(event)">
-            <option value="" disabled selected>Game</option>
-            <option value="genre" disabled selected>Genre</option>
-            <option value="" disabled selected>platform</option>
-            <option value="RATING" disabled selected>Company</option>
-          </select>
+    <select id="gameFilter" onchange="filterGames(event)">
+  <option value="">Select Filter</option>
+  <option value="-name">Name</option>
+  <option value="-rating">Rating</option>
+  <option value="-metacritic">Metacritic</option>
+  
+</select>
+  <select id="platformFilter" onchange="filterPlatforms(event)">
+    <option value="">Select Platform</option>
+    <option value="1">PC</option>
+    <option value="2">Platform 2</option>
+    <option value="3">Platform 3</option>
+  </select>
+  
+
+  
+
+
           </div>
       <div class="games-list">
     
