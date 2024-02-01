@@ -46,79 +46,20 @@
     <section id="games">
       <div class="container">
         <div class="row">
-      <div class="games__list">
-        <div class="game">
-          <figure class="game__img--wrapper">
-        <img
-          class="game__img"
-          src="https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg"
-          alt=""
-        />
-          </figure>
-
-          <div class="game__content">
-            <div class="game__content--top">
-              <div class="game__content--platform">
-                <i class="fab fa-playstation"></i>
-                <i class="fab fa-windows"></i>
-                <i class="fab fa-xbox"></i>
-              </div>
-              <p class="rating">78</p>
-
-            </div>
-            <h3 class="game__content--name">Final Fantasy</h3>
-            <p class="game__content--release-date">01/02/2024</p>
-            <p class="game__content--genre">Adventure, RPG</p>
+          <div class="books__header">
+          <h2 class="section__title books__header--title">
+            All <span class="purple">Books</span>
+          </h2>
+          <select id="categories" onchange="gameCategories(event)">
+            <option value="" disabled selected>Game</option>
+            <option value="genre" disabled selected>Genre</option>
+            <option value="" disabled selected>platform</option>
+            <option value="RATING" disabled selected>Company</option>
+          </select>
           </div>
-        </div>
-            <div class="game">
-          <figure class="game__img--wrapper">
-        <img
-          class="game__img"
-          src="https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg"
-          alt=""
-        />
-          </figure>
-
-          <div class="game__content">
-            <div class="game__content--top">
-              <div class="game__content--platform">
-                <i class="fab fa-playstation"></i>
-                <i class="fab fa-windows"></i>
-                <i class="fab fa-xbox"></i>
-              </div>
-              <p class="rating">78</p>
-
-            </div>
-            <h3 class="game__content--name">Final Fantasy</h3>
-            <p class="game__content--release-date">01/02/2024</p>
-            <p class="game__content--genre">Adventure, RPG</p>
-          </div>
-        </div>
-            <div class="game">
-          <figure class="game__img--wrapper">
-        <img
-          class="game__img"
-          src="https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg"
-          alt=""
-        />
-          </figure>
-
-          <div class="game__content">
-            <div class="game__content--top">
-              <div class="game__content--platform">
-                <i class="fab fa-playstation"></i>
-                <i class="fab fa-windows"></i>
-                <i class="fab fa-xbox"></i>
-              </div>
-              <p class="rating">78</p>
-
-            </div>
-            <h3 class="game__content--name">Final Fantasy</h3>
-            <p class="game__content--release-date">01/02/2024</p>
-            <p class="game__content--genre">Adventure, RPG</p>
-          </div>
-        </div>
+      <div class="games-list">
+    
+            
         
       </div>
       </div>

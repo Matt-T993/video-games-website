@@ -48,7 +48,7 @@
 }
 
 /* games */
-.games__list {
+.games-list {
   display: flex;
   flex-wrap: wrap;
 }
