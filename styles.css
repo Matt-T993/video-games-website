@@ -55,6 +55,12 @@ input {
 .purple {
   color: #6030b1;
 }
+select{
+  background:none;
+  color: white;
+
+  
+}
 
 .btn {
   width: 200px;
@@ -85,6 +91,7 @@ button:hover {
   align-items: center;
   margin: 0 auto;
   z-index: 100;
+  position: relative;
 }
 
 .logo__img {
@@ -118,6 +125,7 @@ header {
 }
 
 .header__container {
+  position: relative;
   width: 100%;
   height: 100%;
   max-width: 720px;
@@ -171,6 +179,27 @@ header {
   margin: 0 auto;
   padding-top: 20px;
   z-index: 2;
+}
+/* .games__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 60px;
+  font-size: 60px;
+}
+
+.fa-spinner {
+  animation: rotate 600ms infinite linear;
+} */
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 768px) {

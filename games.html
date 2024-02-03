@@ -48,32 +48,30 @@
       <div class="container">
         <div class="row">
           <div class="games__header">
+            <div class="game__header--title">
           <h2 class="section__title games__header--title">
             All <span class="purple">Games</span>
           </h2>
-    <select id="gameFilter" onchange="filterGames(event)">
-  <option value="">Select Filter</option>
-  <option value="-name">Name</option>
-  <option value="-rating">Rating</option>
-  <option value="-metacritic">Metacritic</option>
-  
-</select>
-  <select id="platformFilter" onchange="filterPlatforms(event)">
+          <h2></h2>
+        </div>
+    <div class="filters">
+  <select class="filter" id="gameFilter" onchange="filterGames(event)">
+    <option value="">Select Filter</option>
+    <option value="-name">Name</option>
+    <option value="-rating">Rating</option>
+    <option value="-metacritic">Metacritic</option>
+    
+  </select>
+  <select class="filter" id="platformFilter" onchange="filterPlatforms(event)">
     <option value="">Select Platform</option>
     <option value="1">PC</option>
     <option value="2">Platform 2</option>
     <option value="3">Platform 3</option>
   </select>
-  
-
-  
-
-
-          </div>
+  </div>
+    </div>
       <div class="games-list">
-    
-            
-        
+        <i class="fas fa-spinner books__loading--spinner"></i>
       </div>
       </div>
       </div>

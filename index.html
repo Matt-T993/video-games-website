@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VideoGamesRoo</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="./app.js" defer></script>
     <script
       src="https://kit.fontawesome.com/c8e4d183c2.js"
       crossorigin="anonymous"
@@ -39,16 +40,14 @@
               Find your video games infromation with
               <span class="purple">VideoGameRoo</span>
             </h2>
-            <div class="header__searchbar">
-              <input
-                class="header__input"
-                placeholder="Search by Model, Make or Keyword"
-                type="text"
-              />
-              <button class="btn">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
+            <form action="games.html" method="get">
+              <div class="header__searchbar">
+                <input id="gameSearch" type="text" name="search" class="header__input" placeholder="Search Games">
+                <button class="btn" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
             <img
               class="header__img"
               src="https://dev.d24jig8s1lr7n9.amplifyapp.com/img/building.681ea6bf.png"

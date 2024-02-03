@@ -1,6 +1,7 @@
 const gameListEl = document.querySelector(".games-list");
 
 const getGames = async (filter = "", platforms = "", searchQuery = "") => {
+ 
   try {
     let url =
       "https://api.rawg.io/api/games?key=c5a7f5669591401a9bc5b256edd49d68";
@@ -14,13 +15,18 @@ const getGames = async (filter = "", platforms = "", searchQuery = "") => {
     if (platforms) {
       url += `&parent_platforms=${platforms}`;
     }
-
+    // Add search query to the URL
     if (searchQuery) {
       url += `&search=${encodeURIComponent(searchQuery)}`;
     }
+    gameListEl.classList += " games__loading"
+
+
 
     const response = await fetch(url);
     const gamesData = await response.json();
+
+    
 
     // Clear existing games before appending new ones
     gameListEl.innerHTML = "";
@@ -30,8 +36,9 @@ const getGames = async (filter = "", platforms = "", searchQuery = "") => {
       const gameEl = document.createElement("div");
       gameEl.className = "game";
       gameEl.innerHTML = `
+        <div class="game__card">
         <figure class="game__img--wrapper">
-          <img class="game__img" src="${game.background_image}" alt="${
+          <img class="game__img" src="${checkImage(game.background_image) }" alt="${
         game.name
       }" />
         </figure>
@@ -41,7 +48,7 @@ const getGames = async (filter = "", platforms = "", searchQuery = "") => {
               ${game.parent_platforms
                 .map(
                   (platform) =>
-                    `<i class="fab fa-${getPlatformImage(
+                    `<i class="game__platform fab fa-${getPlatformImage(
                       platform.platform.slug
                     )}"></i>`
                 )
@@ -55,6 +62,7 @@ const getGames = async (filter = "", platforms = "", searchQuery = "") => {
             .map((genre) => genre.name)
             .join(", ")}</p>
         </div>
+        </div>
       `;
       gameListEl.appendChild(gameEl);
     });
@@ -63,10 +71,12 @@ const getGames = async (filter = "", platforms = "", searchQuery = "") => {
   }
 };
 
+
 function filterGames(event) {
   const filterValue = event.target.value;
   getGames(filterValue);
 }
+
 
 function filterPlatforms(event) {
   const platformValue = event.target.value;
@@ -101,3 +111,20 @@ function getPlatformImage(platformName) {
   return;
 }
 getGames();
+
+
+function checkImage(image){
+  if(image === null) {
+    return "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"
+  } else {
+    return image;
+  }
+}
+
+window.onload = () => {
+  const params = new URLSearchParams(window.location.search);
+  const searchQuery = params.get('search');
+  if (searchQuery) {
+    getGames("", "", searchQuery);
+  }
+};
