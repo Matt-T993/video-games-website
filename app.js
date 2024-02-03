@@ -1,6 +1,7 @@
 const gameListEl = document.querySelector(".games-list");
 
 const getGames = async (filter = "", platforms = "", searchQuery = "") => {
+  gameListEl.classList += " games__loading";
   try {
     let url =
       "https://api.rawg.io/api/games?key=c5a7f5669591401a9bc5b256edd49d68";
