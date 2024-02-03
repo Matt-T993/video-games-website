@@ -180,17 +180,7 @@ header {
   padding-top: 20px;
   z-index: 2;
 }
-/* .games__loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 60px;
-  font-size: 60px;
-}
 
-.fa-spinner {
-  animation: rotate 600ms infinite linear;
-} */
 
 @keyframes rotate {
   0% {

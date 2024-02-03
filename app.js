@@ -54,11 +54,11 @@ const getGames = async (filter = "", platforms = "", searchQuery = "") => {
                 )
                 .join("")}
             </div>
-            <p class="rating">${game.metacritic ? game.metacritic : "N/A"}</p>
+            <p class="rating ${getRatingClass(game.metacritic)}">${game.metacritic ? game.metacritic : "N/A"}</p>
           </div>
           <h3 class="game__content--name">${game.name}</h3>
-          <p class="game__content--release-date">${game.released}</p>
-          <p class="game__content--genre">${game.genres
+          <p class="game__content--release-date">Release date: ${game.released}</p>
+          <p class="game__content--genre">Genre: ${game.genres
             .map((genre) => genre.name)
             .join(", ")}</p>
         </div>
@@ -110,6 +110,17 @@ function getPlatformImage(platformName) {
   }
   return;
 }
+
+function getRatingClass(rating) {
+  if (rating > 69) {
+    return 'rating-green';
+  } else if (rating > 49) {
+    return 'rating-yellow';
+  } else if (rating <= 49 && rating !== null) {
+    return 'rating-red';
+  }
+  return '';
+}
 getGames();
 
 
@@ -124,6 +135,7 @@ function checkImage(image){
 window.onload = () => {
   const params = new URLSearchParams(window.location.search);
   const searchQuery = params.get('search');
+  document.querySelector(".games__header--title span.purple").textContent = searchQuery;
   if (searchQuery) {
     getGames("", "", searchQuery);
   }
