@@ -27,11 +27,14 @@ p {
 a {
   text-decoration: none;
   color: white;
-  transition: all 300ms ease;
+  opacity: 0.75;
+
 }
-a:hover {
-  color: #6030b1;
+a:hover{
+  color: black;
+
 }
+
 
 ul {
   display: flex;
@@ -80,6 +83,8 @@ button:hover {
   border: 1px solid #ff328f;
 }
 
+
+
 /* navbar */
 
 .nav__container {
@@ -111,12 +116,43 @@ button:hover {
 }
 
 .nav__link {
-  margin-left: 16px;
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
   text-decoration: none;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 12px;
+  color: white;
+  padding: 20px 0px;
+  margin: 0px 20px;
+  display: inline-block;
+  position: relative;
+  opacity: 0.75;
 }
+
+.nav__link:hover {
+  color: black;
+ 
+}
+
+.nav__link::before {
+  transition: 300ms;
+  height: 5px;
+  content: "";
+  position: absolute;
+  background-color: white;
+}
+
+.nav__link--fade-up::before {
+  width: 100%;
+  bottom: 5px;
+  opacity: 0;
+}
+
+.nav__link--fade-up:hover::before {
+  bottom: 10px;
+  opacity: 1;
+}
+
+
 
 /* landing */
 

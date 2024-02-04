@@ -33,6 +33,7 @@
   position: absolute;
   inset: 0px;
   z-index: 1;
+  opacity:0.5;
 }
 
 #games__header .fa-search {
@@ -45,7 +46,9 @@
   color: rgb(96, 48, 177);
   font-size: 32px;
 }
-
+.not__allowed{
+  cursor: not-allowed;
+}
 /* games */
 .games__header{
   display: flex;
