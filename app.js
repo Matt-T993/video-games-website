@@ -1,5 +1,6 @@
 const gameListEl = document.querySelector(".games-list");
 
+//function that gets the game data
 const getGames = async (filter = "", platforms = "", searchQuery = "") => {
   gameListEl.classList += " games__loading";
   try {
@@ -22,12 +23,8 @@ const getGames = async (filter = "", platforms = "", searchQuery = "") => {
     gameListEl.classList += " games__loading"
 
 
-
     const response = await fetch(url);
     const gamesData = await response.json();
-
-    
-
     // Clear existing games before appending new ones
     gameListEl.innerHTML = "";
 
@@ -43,6 +40,9 @@ const getGames = async (filter = "", platforms = "", searchQuery = "") => {
       }" />
         </figure>
         <div class="game__content">
+        <div class="games__overlay">
+        <p class="games__overlay--text">More Info→</>
+        </div>
           <div class="game__content--top">
             <div class="game__content--platform">
               ${game.parent_platforms
@@ -72,25 +72,43 @@ const getGames = async (filter = "", platforms = "", searchQuery = "") => {
 };
 
 
+
+
 function filterGames(event) {
   const filterValue = event.target.value;
-  getGames(filterValue);
-}
+  const platformValue = document.getElementById("platformFilter").value;
+  const searchValue = document.getElementById("gameSearch").value;
+  if(searchValue === "") {
+    document.querySelector(".games__header--title span.purple").textContent = "";
+  }
 
+  getGames(filterValue, platformValue, searchValue); 
+}
 
 function filterPlatforms(event) {
   const platformValue = event.target.value;
-  getGames("", platformValue);
+  const filterValue = document.getElementById("gameFilter").value; 
+  const searchValue = document.getElementById("gameSearch").value;
+  if(searchValue === "") {
+    document.querySelector(".games__header--title span.purple").textContent = "";
+  }
+
+  getGames(filterValue, platformValue, searchValue); 
 }
+
 
 function handleKeyPress(event) {
   if (event.key === "Enter") {
+
     searchGames();
   }
 }
 
 function searchGames() {
   const query = document.getElementById("gameSearch").value;
+  document.querySelector(".games__header--title span.purple").textContent = query;
+  document.getElementById("gameFilter").value = "";
+  document.getElementById("platformFilter").value = "";
   getGames("", "", query);
 }
 

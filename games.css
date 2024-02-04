@@ -35,11 +35,11 @@
   z-index: 1;
 }
 
-#games__header.fa-search {
+#games__header .fa-search {
   z-index: 100;
   position: absolute;
   bottom: 15px;
-  right: 0px;
+  right: 5%;
   z-index: 10000;
   padding: 0px 20px 0px 8px;
   color: rgb(96, 48, 177);
@@ -55,6 +55,9 @@
 .filter{
   padding: 10px;
   margin-left: 20px;
+}
+.header__searchbar{
+  padding: 0 24px;
 }
 
 .loader {
@@ -153,12 +156,10 @@
   margin: 20px;
   overflow: hidden;
   padding-bottom: 20px;
-  
-
+  transition: all 0.3s ease;
+  z-index: 100;
 }
 
-.game__card:hover{
-}
 
 .games__loading {
   display: flex;
@@ -187,6 +188,46 @@
   
 }
 
+.games__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1; 
+  display: none; 
+  height: 202px;
+  transform: translateX(-100%);
+  transition: all 0.5s ease-in-out;
+}
+.games__overlay--text {
+  text-align: center;
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+}
+
+
+.game__card:hover{
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  transform: translate(5px, -5px);
+}
+.game:hover .games__overlay {
+  display: block;
+}
+
+
+.game__card:hover .games__overlay {
+  transform: translateX(0%);
+  transition: all 0.5s ease-in-out;
+  ;
+}
+
+.game__card:hover .game__img {
+  filter: blur(4px);
+}
 
 .rating{
   font-size: 14px;
@@ -216,5 +257,68 @@
   color: red;
   border-color: red;
 }
+@media (max-width: 1024px) {
+  .game__content--name{
+    font-size: 18px;
+  }
+  .game__content--release-date ,.game__content--genre{
+    font-size: 14px;
+  }
+}
+  
+
+
+@media (max-width: 785px) {
+  .game {
+    width: calc((100% / 2));
+  }
+  .game__content--name{
+    font-size: 18px;
+  }
+  .game__content--release-date ,.game__content--genre{
+    font-size: 14px;
+  }
+  .games__header--title{
+    font-size: 16px;
+  }
+  .filter{
+    padding: 6px;
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  .game {
+    width: calc((80% / 1));
+  }
+
+  #games__header .fa-search {
+    right: 10%;
+  }
+  .games__header--title{
+    margin-bottom: 16px;
+  }
+  .filter{
+    padding: 4px;
+    margin-left: 20px;
+  }
+  .games__header{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+  .content__description--title{
+    font-size: 32px;
+  }
+
+  
+
+}
+@media (max-width: 450px) {
+  .game {
+    width: calc((100% / 1));
+  }
+}
+
 
 
