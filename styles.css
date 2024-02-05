@@ -68,6 +68,11 @@ select {
   color: white;
 }
 
+option {
+  color: black;
+}
+
+
 .btn {
   width: 200px;
   margin-left: 20px;
