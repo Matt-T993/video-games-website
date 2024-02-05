@@ -1,5 +1,14 @@
 //select the element that the games will be displayed
 const gameListEl = document.querySelector(".games-list");
+//open menu of navbar
+function openMenu() {
+  document.body.classList += "menu--open";
+}
+
+//close menu of navbar
+function closeMenu() {
+  document.body.classList.remove("menu--open");
+}
 
 //function that gets the game data
 const getGames = async (filter = "", platforms = "", searchQuery = "") => {
@@ -26,8 +35,8 @@ const getGames = async (filter = "", platforms = "", searchQuery = "") => {
     const response = await fetch(url);
     const gamesData = await response.json();
     displayGames(gamesData.results); // display fetched games
-    } catch (error) {
-  console.error("Failed to fetch games: ", error);
+  } catch (error) {
+    console.error("Failed to fetch games: ", error);
   }
 };
 
@@ -40,18 +49,17 @@ function displayGames(games) {
     gameEl.innerHTML = gameHtml(game);
     gameListEl.appendChild(gameEl);
   });
-  toggleLoading(false); 
+  toggleLoading(false);
 }
-
 
 // function that generate HTML for a game
 function gameHtml(game) {
   return `
       <div class="game__card">
       <figure class="game__img--wrapper">
-        <img class="game__img" src="${checkImage(game.background_image) }" alt="${
-      game.name
-    }" />
+        <img class="game__img" src="${checkImage(
+          game.background_image
+        )}" alt="${game.name}" />
       </figure>
       <div class="game__content">
       <div class="games__overlay not__allowed">
@@ -68,17 +76,20 @@ function gameHtml(game) {
               )
               .join("")}
           </div>
-          <p class="rating ${getRatingClass(game.metacritic)}">${game.metacritic ? game.metacritic : "N/A"}</p>
+          <p class="rating ${getRatingClass(game.metacritic)}">${
+    game.metacritic ? game.metacritic : "N/A"
+  }</p>
         </div>
         <h3 class="game__content--name">${game.name}</h3>
-        <p class="game__content--release-date">Release date: ${game.released}</p>
+        <p class="game__content--release-date">Release date: ${
+          game.released
+        }</p>
         <p class="game__content--genre">Genre: ${game.genres
           .map((genre) => genre.name)
           .join(", ")}</p>
       </div>
       </div>
     `;
-  
 }
 
 //filter games based on selection
@@ -86,22 +97,24 @@ function filterGames(event) {
   const filterValue = event.target.value;
   const platformValue = document.getElementById("platformFilter").value;
   const searchValue = document.getElementById("gameSearch").value;
-  if(searchValue === "") {
-    document.querySelector(".games__header--title span.purple").textContent = "";
+  if (searchValue === "") {
+    document.querySelector(".games__header--title span.purple").textContent =
+      "";
   }
 
-  getGames(filterValue, platformValue, searchValue); 
+  getGames(filterValue, platformValue, searchValue);
 }
 
 //filter games based on platform selection
 function filterPlatforms(event) {
   const platformValue = event.target.value;
-  const filterValue = document.getElementById("gameFilter").value; 
+  const filterValue = document.getElementById("gameFilter").value;
   const searchValue = document.getElementById("gameSearch").value;
-  if(searchValue === "") {
-    document.querySelector(".games__header--title span.purple").textContent = "";
+  if (searchValue === "") {
+    document.querySelector(".games__header--title span.purple").textContent =
+      "";
   }
-  getGames(filterValue, platformValue, searchValue); 
+  getGames(filterValue, platformValue, searchValue);
 }
 
 //handles enter key press in searching games
@@ -114,7 +127,8 @@ function handleKeyPress(event) {
 //searches games based on the query entered
 function searchGames() {
   const query = document.getElementById("gameSearch").value;
-  document.querySelector(".games__header--title span.purple").textContent = query;
+  document.querySelector(".games__header--title span.purple").textContent =
+    query;
   document.getElementById("gameFilter").value = "";
   document.getElementById("platformFilter").value = "";
   getGames("", "", query);
@@ -140,19 +154,22 @@ function getPlatformImage(platformName) {
 // determines the class and color for game rating based on its value
 function getRatingClass(rating) {
   if (rating > 69) {
-    return 'rating-green';
+    return "rating-green";
   } else if (rating > 49) {
-    return 'rating-yellow';
+    return "rating-yellow";
   } else if (rating <= 49 && rating !== null) {
-    return 'rating-red';
+    return "rating-red";
   }
-  return '';
+  return "";
 }
 getGames();
 
 //check if image exist
 function checkImage(image) {
-  return image || "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg";
+  return (
+    image ||
+    "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"
+  );
 }
 
 //show or hides the loading indicator
@@ -167,8 +184,9 @@ function toggleLoading(isLoading) {
 //intial fetch of games on window load
 window.onload = () => {
   const params = new URLSearchParams(window.location.search);
-  const searchQuery = params.get('search');
-  document.querySelector(".games__header--title span.purple").textContent = searchQuery;
+  const searchQuery = params.get("search");
+  document.querySelector(".games__header--title span.purple").textContent =
+    searchQuery;
   if (searchQuery) {
     getGames("", "", searchQuery);
   }
