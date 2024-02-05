@@ -65,12 +65,9 @@ input {
 
 select {
   background: none;
-  color: white;
+
 }
 
-option {
-  color: black;
-}
 
 
 .btn {
